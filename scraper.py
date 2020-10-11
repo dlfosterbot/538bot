@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import re
 
 #creates a headless instance of chrome, connects to five thirty eight and pages down twice to reach the forecast data,
 #which is then inspected by element id
@@ -21,16 +22,24 @@ def scrape():
 
     #inspects element id and stores text
     element = browser.find_element_by_id('desc-topline-chart').text
+
+    browser.close()
+
     #finds the digits from the string
     digits = find_digits(element)
+
     return(digits)
 
 
 #pulls the digits out of the sentence, but won't work if Trump goes to single digits.
-def find_digits(string_name):
-    list = [string_name[11] + string_name[12], string_name[32] + string_name[33]]
+def find_digits(str):
+    print(str)
+    digits = re.findall(r'\b\d{1,2}\b', str)
+    print(digits)
 
-    return list
+    #list = [string_name[11] + string_name[12], string_name[32] + string_name[33]]
+
+    return digits
 
 
 

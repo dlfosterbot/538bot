@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 import asyncio
 
+
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
@@ -20,6 +22,7 @@ async def on_ready():
 
 #global variable to store results of 538 scrape
 result = []
+
 
 #generator that works with the 538 timer to query the site every 15 minutes and store the results in the "result" list
 async def background_scrape():
