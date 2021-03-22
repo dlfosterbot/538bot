@@ -36,8 +36,14 @@ async def on_message(message):
         return
 
 
+    if message.author.id != 334894641835147264:
+        print(message.author.id)
+        await message.channel.send(f'Hello!, {author_name[:-5]}')
+
+
+
     if input == 'forecast!':
-        results = scrape()
+
 
         biden_wins = "Biden: {biden}%\n".format(biden = results.get('Biden', 0))
         trump_wins = "Trump: {trump}%\n".format(trump = results.get('Trump', 0))
